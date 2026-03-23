@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#43C116"/>
+    <!-- Bo góc khớp với viền Card -->
+    <corners android:topLeftRadius="16dp" android:bottomRightRadius="12dp"/>
+</shape>
