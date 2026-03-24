@@ -49,5 +49,14 @@ public class MainHomeActivity extends AppCompatActivity {
                 startActivity(intent);
             });
         }
+
+//        //4. Map
+//        LinearLayout navMap = findViewById(R.id.navMap);
+//        if(navMap != null){
+//            navMap.setOnClickListener(v -> {
+//                Intent intent = new Intent(MainHomeActivity.this, MapActivity.class);
+//                startActivity(intent);
+//            });
+//        }
     }
 }
