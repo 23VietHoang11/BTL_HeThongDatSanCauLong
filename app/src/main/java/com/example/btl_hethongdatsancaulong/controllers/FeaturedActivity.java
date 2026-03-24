@@ -1,4 +1,4 @@
-package com.example.btl_hethongdatsancaulong;
+package com.example.btl_hethongdatsancaulong.controllers;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.btl_hethongdatsancaulong.R;
 
 public class FeaturedActivity extends AppCompatActivity {
 

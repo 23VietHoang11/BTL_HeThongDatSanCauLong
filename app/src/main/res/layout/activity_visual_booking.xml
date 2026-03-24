@@ -111,8 +111,7 @@
             android:text="Xem sân &amp; bảng giá"
             android:textColor="#F4B33E"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:paintFlags="8" /> <!-- 8 là cờ cho underline text -->
+            android:textStyle="bold" /> <!-- 8 là cờ cho underline text -->
 
     </LinearLayout>
 
