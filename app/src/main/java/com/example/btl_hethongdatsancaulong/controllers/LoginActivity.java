@@ -19,39 +19,31 @@ public class LoginActivity extends AppCompatActivity {
         // Nút Đăng nhập
         binding.btnLogin.setOnClickListener(v -> handleLogin());
 
-        // Nút chuyển sang trang Đăng ký (Bạn nhớ set ID tvRegister trong XML nhé)
-        // binding.tvRegister.setOnClickListener(v -> {
-        //    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-        //    startActivity(intent);
-        // });
+        // Nút chuyển sang trang Đăng ký
+        binding.tvRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
 
+        // Nút Back (Thoát app hoặc về trang trước)
         binding.btnBack.setOnClickListener(v -> finish());
     }
 
     private void handleLogin() {
-        // Lấy ID từ XML (edtPhoneLogin, edtPasswordLogin) bạn vừa thêm
-        // Giả lập code:
-        /*
-        String phone = binding.edtPhoneLogin.getText().toString().trim();
-        String password = binding.edtPasswordLogin.getText().toString().trim();
+        // Lấy dữ liệu (Chưa cần check pass vội, cứ điền là cho qua để test luồng)
+        String phone = binding.edtPhoneLogin.getText() != null ? binding.edtPhoneLogin.getText().toString().trim() : "";
+        String password = binding.edtPasswordLogin.getText() != null ? binding.edtPasswordLogin.getText().toString().trim() : "";
 
         if (phone.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập số điện thoại và mật khẩu", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Giả lập check pass thành công -> Chuyển vào MainHomeActivity
-        if (phone.equals("0983633639") && password.equals("123456")) {
-        */
         Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-        // CHUYỂN VÀO TRANG CHỦ THEO LUỒNG MVC
-        // Intent intent = new Intent(LoginActivity.this, MainHomeActivity.class);
-        // startActivity(intent);
-        // finish();
-        /*
-        } else {
-            Toast.makeText(this, "Sai thông tin đăng nhập", Toast.LENGTH_SHORT).show();
-        }
-        */
+
+        // CHUYỂN VÀO TRANG CHỦ
+        Intent intent = new Intent(LoginActivity.this, MainHomeActivity.class);
+        startActivity(intent);
+        finish(); // Đóng trang Đăng nhập lại để người dùng ấn Back không bị quay lại đây
     }
 }
