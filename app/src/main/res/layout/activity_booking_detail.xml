@@ -86,16 +86,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tên CLB: Sân Cầu Lông Đại Học Sư Phạm"
-                    android:textColor="#FFFFFF"
+                    android:id="@+id/tvCheckoutName"                    android:textColor="#FFFFFF"
                     android:textSize="15sp"
                     android:layout_marginBottom="8dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Địa chỉ: Nhà thi đấu ĐHSP HN 136 Xuân Thuỷ, Cầu Giấy, Hà Nội"
-                    android:textColor="#FFFFFF"
+                    android:id="@+id/tvCheckoutAddress"                    android:textColor="#FFFFFF"
                     android:textSize="15sp" />
             </LinearLayout>
 

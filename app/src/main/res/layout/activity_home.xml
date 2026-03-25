@@ -121,6 +121,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvDetailName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Sân Cầu Lông Đại Học Sư Phạm"
@@ -165,6 +166,7 @@
                         app:tint="#1B5E20" />
 
                     <TextView
+                        android:id="@+id/tvDetailAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -188,6 +190,7 @@
                         app:tint="#1B5E20" />
 
                     <TextView
+                        android:id="@+id/tvDetailTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
