@@ -20,23 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".controllers.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".controllers.MainHomeActivity" />
-
-        <activity android:name=".controllers.CourtDetailActivity" />
-        <activity android:name=".controllers.FeaturedActivity" />
-        <activity android:name=".controllers.VisualBookingActivity" />
-        <activity android:name=".controllers.BookingDetailActivity" />
-        <activity android:name=".controllers.RegisterActivity" />
     </application>
 
 </manifest>
