@@ -33,7 +33,9 @@ public class MainHomeActivity extends AppCompatActivity {
             // Khi bấm nút ĐẶT LỊCH trên bất kỳ sân nào, nó sẽ bay sang trang Chi tiết
             Intent intent = new Intent(MainHomeActivity.this, CourtDetailActivity.class);
             // Bạn có thể gửi thêm tên sân sang trang chi tiết bằng lệnh:
-            // intent.putExtra("TEN_SAN", san.getTenSan());
+            intent.putExtra("TEN_SAN", san.getTenSan());
+            intent.putExtra("DIA_CHI", san.getDiaChi());
+            intent.putExtra("THOI_GIAN", san.getThoiGian());
             startActivity(intent);
         });
 
