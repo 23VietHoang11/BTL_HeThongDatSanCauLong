@@ -1,5 +1,6 @@
 package com.example.btl_hethongdatsancaulong.controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +37,40 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         // Nút Back
         binding.btnMapLayer.setOnClickListener(v -> finish());
+
+        // Xử lý nút Trang chủ ở Bottom Navigation
+        binding.navHome.setOnClickListener(v -> {
+            Intent intent = new Intent(MapActivity.this, MainHomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+        });
+
+        binding.navMap.setOnClickListener(v -> {
+            Intent intent = new Intent(MapActivity.this, MapActivity.class);
+            // Dùng cờ này để chuyển tab mượt mà, không bị hiệu ứng trượt như mở trang mới
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+        });
+
+        // 3. Nút Khám phá (Nút giữa) - Tạm thời hiển thị thông báo
+        binding.navExplore.setOnClickListener(v -> {
+            android.widget.Toast.makeText(this, "Tính năng ghép kèo đang phát triển!", android.widget.Toast.LENGTH_SHORT).show();
+        });
+
+        // 4. Nút Nổi bật
+        binding.navFeatured.setOnClickListener(v -> {
+            Intent intent = new Intent(MapActivity.this, FeaturedActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+        });
+
+        // 5. Nút Tài khoản
+        binding.navAccount.setOnClickListener(v -> {
+            Intent intent = new Intent(MapActivity.this, AccountActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+        });
     }
 
     // Hàm này tự động chạy khi bản đồ đã load xong
