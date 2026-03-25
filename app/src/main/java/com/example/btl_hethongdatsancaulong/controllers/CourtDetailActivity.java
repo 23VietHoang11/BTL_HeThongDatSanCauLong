@@ -9,15 +9,31 @@ import com.example.btl_hethongdatsancaulong.databinding.ActivityChooseBookingBin
 import com.example.btl_hethongdatsancaulong.databinding.ActivityHomeBinding;
 
 public class CourtDetailActivity extends AppCompatActivity {
-
+    private String tenSan = "";
+    private String diaChi = "";
+    private String thoiGian = "";
     private ActivityHomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Lưu ý: Layout của trang này là activity_home.xml
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+
+        // --- NHẬN DỮ LIỆU VÀ ĐỔ LÊN GIAO DIỆN ---
+        Intent intent = getIntent();
+        if (intent != null) {
+            tenSan = intent.getStringExtra("TEN_SAN");
+            diaChi = intent.getStringExtra("DIA_CHI");
+            thoiGian = intent.getStringExtra("THOI_GIAN");
+
+            // Cập nhật ViewBinding (đảm bảo bạn đã thêm ID ở bước 4.1 nhé)
+            if (tenSan != null) binding.tvDetailName.setText(tenSan);
+            if (diaChi != null) binding.tvDetailAddress.setText(diaChi);
+            if (thoiGian != null) binding.tvDetailTime.setText(thoiGian);
+        }
 
         // Nút Back
         binding.btnBack.setOnClickListener(v -> onBackPressed());
@@ -42,6 +58,9 @@ public class CourtDetailActivity extends AppCompatActivity {
         dialogBinding.cardVisualBooking.setOnClickListener(v -> {
             dialog.dismiss();
             Intent intent = new Intent(CourtDetailActivity.this, VisualBookingActivity.class);
+            intent.putExtra("TEN_SAN", tenSan);
+            intent.putExtra("DIA_CHI", diaChi);
+            intent.putExtra("THOI_GIAN", thoiGian);
             startActivity(intent);
         });
 
