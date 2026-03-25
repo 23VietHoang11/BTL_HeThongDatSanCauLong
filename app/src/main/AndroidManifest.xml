@@ -11,6 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BTL_HeThongDatSanCauLong">
+        <activity android:name=".controllers.MainHomeActivity" />
+        <activity android:name=".controllers.FeaturedActivity" />
+        <activity android:name=".controllers.CourtDetailActivity" />
+        <activity android:name=".controllers.VisualBookingActivity" />
+        <activity android:name=".controllers.BookingDetailActivity" />
+        <activity android:name=".controllers.AccountActivity"/>
+        <activity android:name=".controllers.MapActivity"/>
         <activity
             android:name=".controllers.MainActivity"
             android:exported="true">
