@@ -278,22 +278,6 @@
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- Thanh Slider (Zoom / Scroll) -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_slider_container">
-
-            <SeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:progress="20"
-                android:progressDrawable="@drawable/custom_seekbar_progress"
-                android:thumb="@drawable/custom_seekbar_thumb" />
-        </FrameLayout>
 
         <!-- Nút Tiếp Theo -->
         <TextView
