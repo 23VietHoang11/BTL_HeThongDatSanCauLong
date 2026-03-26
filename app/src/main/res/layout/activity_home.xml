@@ -224,22 +224,7 @@
         </androidx.cardview.widget.CardView>
 
         <!-- Badge "Chưa có đánh giá" đè lên thẻ (Phải đặt dưới CardView trong ConstraintLayout để đè lên trên) -->
-        <TextView
-            android:id="@+id/tvRatingBadge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_rounded_green_solid"
-            android:drawablePadding="8dp"
-            android:elevation="6dp"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp"
-            android:text="Chưa có đánh giá"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/cvMainInfo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/cvMainInfo" />
+
 
         <!-- TabLayout -->
         <com.google.android.material.tabs.TabLayout

@@ -21,15 +21,17 @@
         <activity android:name=".controllers.BookingDetailActivity" />
         <activity android:name=".controllers.AccountActivity"/>
         <activity android:name=".controllers.MapActivity"/>
+        <activity android:name=".controllers.RegisterActivity"/>
         <activity
-            android:name=".controllers.MainActivity"
+            android:name=".controllers.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>
