@@ -35,8 +35,8 @@ public class AccountActivity extends AppCompatActivity {
             // Tạm thời mình để Toast, lát nữa làm HistoryActivity xong mình sẽ mở khóa Intent sau nhé
             Toast.makeText(this, "Đang mở Lịch sử đặt sân...", Toast.LENGTH_SHORT).show();
 
-            // Intent intent = new Intent(AccountActivity.this, HistoryActivity.class);
-            // startActivity(intent);
+            Intent intent = new Intent(AccountActivity.this, HistoryActivity.class);
+            startActivity(intent);
         });
 
         // --- 3. XỬ LÝ BOTTOM NAVIGATION ---
