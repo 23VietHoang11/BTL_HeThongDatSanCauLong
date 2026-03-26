@@ -22,6 +22,7 @@
         <activity android:name=".controllers.AccountActivity"/>
         <activity android:name=".controllers.MapActivity"/>
         <activity android:name=".controllers.RegisterActivity"/>
+        <activity android:name=".controllers.HistoryActivity"/>
         <activity
             android:name=".controllers.LoginActivity"
             android:exported="true">
