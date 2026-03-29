@@ -1,11 +1,11 @@
-package com.example.btl_hethongdatsancaulong.controllers;
+package com.example.btl_hethongdatsancaulong.controllers.customer;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.btl_hethongdatsancaulong.R;
+
 import com.example.btl_hethongdatsancaulong.databinding.ActivityChooseBookingBinding;
 import com.example.btl_hethongdatsancaulong.databinding.ActivityFeaturedBinding;
 

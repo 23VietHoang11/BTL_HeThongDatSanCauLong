@@ -1,4 +1,4 @@
-package com.example.btl_hethongdatsancaulong.controllers;
+package com.example.btl_hethongdatsancaulong.controllers.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +12,6 @@ import android.view.Window;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import com.bumptech.glide.Glide;
 
 import com.example.btl_hethongdatsancaulong.R;
 import com.example.btl_hethongdatsancaulong.databinding.ActivityBookingDetailBinding;

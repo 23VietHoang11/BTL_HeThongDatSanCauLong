@@ -1,4 +1,4 @@
-package com.example.btl_hethongdatsancaulong.controllers;
+package com.example.btl_hethongdatsancaulong.controllers.customer;
 
 import android.app.Dialog;
 import android.content.Intent;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#228B22"
     android:paddingTop="36dp"
-    tools:context=".controllers.FeaturedActivity">
+    tools:context=".controllers.customer.FeaturedActivity">
 
     <ScrollView
         android:layout_width="match_parent"

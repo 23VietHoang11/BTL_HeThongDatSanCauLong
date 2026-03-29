@@ -1,4 +1,4 @@
-package com.example.btl_hethongdatsancaulong.controllers;
+package com.example.btl_hethongdatsancaulong.controllers.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
