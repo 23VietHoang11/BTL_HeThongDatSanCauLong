@@ -40,7 +40,11 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
 
             } else {
-                Toast.makeText(this, "Tài khoản không hợp lệ!", Toast.LENGTH_SHORT).show();
+                // 3. Luồng của KHÁCH HÀNG (Dành cho tất cả các số điện thoại hoặc tài khoản khác)
+                Toast.makeText(this, "Xin chào Khách hàng!", Toast.LENGTH_SHORT).show();
+                android.content.Intent intent = new android.content.Intent(LoginActivity.this, com.example.btl_hethongdatsancaulong.controllers.customer.MainHomeActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
