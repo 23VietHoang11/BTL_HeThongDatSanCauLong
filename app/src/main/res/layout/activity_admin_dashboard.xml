@@ -49,6 +49,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvGreeting"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Xin chào, Chủ sân!"
@@ -73,6 +74,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutTopCards"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -82,6 +84,7 @@
                 android:weightSum="3">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDoanhThu"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
@@ -185,6 +188,7 @@
                 android:textStyle="bold" />
 
             <GridLayout
+                android:id="@+id/gridLayoutMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
