@@ -14,17 +14,26 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBa5IsjjYyj-Q1qVMSLUe9EmoBnSFsjyCA" />
-        <activity android:name=".controllers.MainHomeActivity" />
-        <activity android:name=".controllers.FeaturedActivity" />
-        <activity android:name=".controllers.CourtDetailActivity" />
-        <activity android:name=".controllers.VisualBookingActivity" />
-        <activity android:name=".controllers.BookingDetailActivity" />
-        <activity android:name=".controllers.AccountActivity"/>
-        <activity android:name=".controllers.MapActivity"/>
-        <activity android:name=".controllers.RegisterActivity"/>
-        <activity android:name=".controllers.HistoryActivity"/>
+        <activity android:name=".controllers.customer.MainHomeActivity" />
+        <activity android:name=".controllers.customer.FeaturedActivity" />
+        <activity android:name=".controllers.customer.CourtDetailActivity" />
+        <activity android:name=".controllers.customer.VisualBookingActivity" />
+        <activity android:name=".controllers.customer.BookingDetailActivity" />
+        <activity android:name=".controllers.customer.AccountActivity"/>
+        <activity android:name=".controllers.customer.MapActivity"/>
+        <activity android:name=".controllers.auth.RegisterActivity"/>
+        <activity android:name=".controllers.admin.AdminBookingActivity" />
+        <activity android:name=".controllers.admin.AdminDashboardActivity" />
+        <activity android:name=".controllers.admin.AdminCourtActivity" />
+        <activity android:name=".controllers.admin.AdminAddCourtActivity" />
+        <activity android:name=".controllers.admin.AdminPosActivity" />
+        <activity android:name=".controllers.admin.AdminStatsActivity" />
+        <activity android:name=".controllers.admin.AdminUserActivity" />
+        <activity android:name=".controllers.admin.AdminSettingsActivity" />
+        <activity android:name=".controllers.admin.AdminStaffActivity" />
+
         <activity
-            android:name=".controllers.LoginActivity"
+            android:name=".controllers.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

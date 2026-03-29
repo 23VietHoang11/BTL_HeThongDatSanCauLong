@@ -1,9 +1,11 @@
-package com.example.btl_hethongdatsancaulong.controllers;
+package com.example.btl_hethongdatsancaulong.controllers.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.btl_hethongdatsancaulong.controllers.auth.LoginActivity;
 import com.example.btl_hethongdatsancaulong.databinding.ActivityAccountBinding;
 
 public class AccountActivity extends AppCompatActivity {

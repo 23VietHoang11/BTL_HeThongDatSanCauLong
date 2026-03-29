@@ -1,4 +1,4 @@
-package com.example.btl_hethongdatsancaulong.controllers;
+package com.example.btl_hethongdatsancaulong.controllers.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.btl_hethongdatsancaulong.R;
+import com.example.btl_hethongdatsancaulong.controllers.auth.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 

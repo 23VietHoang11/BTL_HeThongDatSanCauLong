@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Điều Chỉnh Nhân Sự"
+        android:textColor="#1B5E20"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvDialogStaffName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Nhân viên: Lỗi tên"
+        android:textColor="#555555" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Phân ca làm việc"
+        android:textColor="#2E7D32"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinnerDialogShift"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_input_border"
+        android:paddingHorizontal="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Mức lương (VNĐ)"
+        android:textColor="#2E7D32"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtDialogSalary"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_input_border"
+        android:hint="VD: 5000000"
+        android:inputType="number"
+        android:paddingHorizontal="12dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btnDialogCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#E0E0E0"
+            android:text="Hủy"
+            android:textColor="#555555" />
+
+        <Button
+            android:id="@+id/btnDialogSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#2E7D32"
+            android:text="Cập Nhật"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</LinearLayout>
