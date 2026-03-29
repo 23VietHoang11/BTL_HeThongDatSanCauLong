@@ -21,24 +21,26 @@ public class LoginActivity extends AppCompatActivity {
 
         // Nút Đăng nhập
         binding.btnLogin.setOnClickListener(v -> {
-            // Giả sử bạn lấy text từ ô nhập Email ra (Nhớ thay đúng ID ô email của bạn nhé)
             String email = binding.edtPhoneLogin.getText().toString().trim();
 
-            if (email.equalsIgnoreCase("123123")) {
-                // NẾU GÕ CHỮ "admin" VÀO Ô EMAIL -> MỞ APP CHỦ SÂN
+            if (email.equalsIgnoreCase("111")) {
+                // 1. Luồng của CHỦ SÂN
                 Toast.makeText(this, "Đăng nhập quyền Quản trị viên", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                android.content.Intent intent = new android.content.Intent(LoginActivity.this, com.example.btl_hethongdatsancaulong.controllers.admin.AdminDashboardActivity.class);
+                intent.putExtra("ROLE", "ADMIN"); // Gắn thẻ ADMIN
+                startActivity(intent);
+                finish();
+
+            } else if (email.equalsIgnoreCase("222")) {
+                // 2. Luồng của NHÂN VIÊN
+                Toast.makeText(this, "Đăng nhập ca trực Nhân viên", Toast.LENGTH_SHORT).show();
+                android.content.Intent intent = new android.content.Intent(LoginActivity.this, com.example.btl_hethongdatsancaulong.controllers.admin.AdminDashboardActivity.class);
+                intent.putExtra("ROLE", "STAFF"); // Gắn thẻ STAFF
                 startActivity(intent);
                 finish();
 
             } else {
-                // NẾU GÕ BẤT CỨ CHỮ GÌ KHÁC (HOẶC ĐỂ TRỐNG) -> MỞ APP KHÁCH HÀNG
-                Toast.makeText(this, "Đăng nhập quyền Khách hàng", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, MainHomeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
+                Toast.makeText(this, "Tài khoản không hợp lệ!", Toast.LENGTH_SHORT).show();
             }
         });
 

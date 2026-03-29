@@ -36,10 +36,21 @@ public class AdminCourtActivity extends AppCompatActivity {
         binding.recyclerViewAdminCourt.setAdapter(adapter);
 
         // 4. Xử lý nút Thêm sân mới (FAB)
-// 4. Xử lý nút Thêm sân mới (FAB)
         binding.fabAddCourt.setOnClickListener(v -> {
             android.content.Intent intent = new android.content.Intent(AdminCourtActivity.this, AdminAddCourtActivity.class);
             startActivity(intent);
         });
+
+        // Kiểm tra quyền: Nếu là STAFF thì ẩn nút Thêm Sân (FAB)
+        String role = getIntent().getStringExtra("ROLE");
+        if ("STAFF".equals(role)) {
+            binding.fabAddCourt.setVisibility(android.view.View.GONE);
+        } else {
+            // Còn nếu là ADMIN thì vẫn hoạt động bình thường
+            binding.fabAddCourt.setOnClickListener(v -> {
+                android.content.Intent intent = new android.content.Intent(AdminCourtActivity.this, AdminAddCourtActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 }
