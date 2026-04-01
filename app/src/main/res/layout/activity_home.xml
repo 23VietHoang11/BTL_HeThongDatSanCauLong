@@ -110,9 +110,10 @@
 
                     <!-- Chỗ để logo cầu lông -->
                     <ImageView
+                        android:src="@drawable/anh"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@android:color/darker_gray" />
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"

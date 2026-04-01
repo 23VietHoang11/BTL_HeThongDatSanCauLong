@@ -19,7 +19,6 @@
             android:orientation="vertical"
             android:paddingBottom="20dp">
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,10 +31,10 @@
                     android:id="@+id/ivAppLogo"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@android:drawable/sym_def_app_icon"
+                    android:src="@drawable/anh"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#4CAF50" />
+                    />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -47,6 +46,7 @@
                     app:layout_constraintTop_toTopOf="@id/ivAppLogo">
 
                     <TextView
+                        android:id="@+id/tvCurrentDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Thứ tư, 11/03/2026"
@@ -54,6 +54,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvCustomerName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Phạm Đình Kiên"
@@ -89,7 +90,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,13 +114,18 @@
                         android:src="@android:drawable/ic_menu_search"
                         app:tint="#4CAF50" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                    <EditText
+                        android:id="@+id/edtSearch"
+                        android:layout_width="239dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
-                        android:text="Tìm kiếm"
-                        android:textColor="#9E9E9E"
+                        android:background="@null"
+                        android:hint="Tìm kiếm sân..."
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:textColor="#333333"
+                        android:textColorHint="#9E9E9E"
                         android:textSize="14sp" />
 
                     <ImageView
@@ -140,12 +145,11 @@
                     android:contentDescription="Ảnh"/>
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -172,7 +176,6 @@
                     app:tint="#0B6A41" />
             </LinearLayout>
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewVenues"
                 android:layout_width="match_parent"
@@ -180,13 +183,11 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:nestedScrollingEnabled="false"
-
                 tools:listitem="@layout/item_venue_card"
                 tools:itemCount="3"/>
 
         </LinearLayout>
     </ScrollView>
-
 
     <LinearLayout
         android:id="@+id/layoutBottomNav"
@@ -207,14 +208,12 @@
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bản đồ" android:textColor="#9E9E9E" android:textSize="10sp" android:layout_marginTop="4dp"/>
         </LinearLayout>
 
-
         <LinearLayout android:id="@+id/navExplore" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:layout_marginTop="-20dp">
             <ImageView android:layout_width="60dp" android:layout_height="60dp" android:background="@drawable/bg_circle_white" android:padding="8dp" android:src="@android:drawable/ic_menu_view" app:tint="#4CAF50" android:elevation="4dp"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Khám phá" android:textColor="#9E9E9E" android:textSize="10sp" android:layout_marginTop="4dp"/>
         </LinearLayout>
 
         <LinearLayout android:id="@+id/navFeatured" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"

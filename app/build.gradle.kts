@@ -2,13 +2,12 @@ import org.gradle.kotlin.dsl.implementation
 
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
     namespace = "com.example.btl_hethongdatsancaulong"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.btl_hethongdatsancaulong"
@@ -44,9 +43,15 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.database)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    
     // Thư viện Glide để load ảnh QR từ Internet
     implementation("com.github.bumptech.glide:glide:4.16.0")
 }

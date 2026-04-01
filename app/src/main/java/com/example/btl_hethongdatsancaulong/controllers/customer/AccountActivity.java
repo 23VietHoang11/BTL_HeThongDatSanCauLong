@@ -20,14 +20,14 @@ public class AccountActivity extends AppCompatActivity {
 
         // --- 1. XỬ LÝ NÚT ĐĂNG XUẤT ---
         binding.btnLogout.setOnClickListener(v -> {
+            // ⚠️ Xóa trắng thông tin tài khoản khỏi bộ nhớ máy
+            android.content.SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            sharedPreferences.edit().clear().apply();
+
             Toast.makeText(this, "Đã đăng xuất thành công!", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
-            // 2 Dòng cờ (flags) này cực kỳ quan trọng:
-            // Nó giúp xóa sạch bộ nhớ tạm các màn hình đã mở trước đó.
-            // Tránh việc người dùng đăng xuất rồi mà ấn nút Back trên điện thoại vẫn chui lại được vào app!
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
             startActivity(intent);
             finish();
         });

@@ -21,6 +21,8 @@
         <activity android:name=".controllers.customer.BookingDetailActivity" />
         <activity android:name=".controllers.customer.AccountActivity"/>
         <activity android:name=".controllers.customer.MapActivity"/>
+        <activity android:name=".controllers.customer.FeaturedDetailActivity" />
+        <activity android:name=".controllers.customer.HistoryActivity"/>
         <activity android:name=".controllers.auth.RegisterActivity"/>
         <activity android:name=".controllers.admin.AdminBookingActivity" />
         <activity android:name=".controllers.admin.AdminDashboardActivity" />
@@ -31,6 +33,7 @@
         <activity android:name=".controllers.admin.AdminUserActivity" />
         <activity android:name=".controllers.admin.AdminSettingsActivity" />
         <activity android:name=".controllers.admin.AdminStaffActivity" />
+
 
         <activity
             android:name=".controllers.auth.LoginActivity"

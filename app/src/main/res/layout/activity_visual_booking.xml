@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2FCFC"> <!-- Màu nền xanh siêu nhạt ở phần trống dưới cùng -->
+    android:background="#F2FCFC">
 
-    <!-- PHẦN HEADER CỐ ĐỊNH PHÍA TRÊN (Màu xanh đậm) -->
     <LinearLayout
         android:id="@+id/layoutTopHeader"
         android:layout_width="match_parent"
@@ -16,7 +15,6 @@
         android:padding="16dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Toolbar: Nút Back và Tiêu đề -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,22 +27,21 @@
                 android:layout_height="50dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_arrow_back"
-                app:tint="#FFFFFF"
-                android:contentDescription="Nút Back"/>
+                app:tint="#FFFFFF" />
 
             <TextView
+                android:id="@+id/tvHeaderTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Đặt lịch ngày trực quan"
+                android:text="Tên Chi Nhánh"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="32dp"/>
         </LinearLayout>
 
-        <!-- Nút Chọn Ngày -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,9 +53,10 @@
             android:paddingVertical="8dp">
 
             <TextView
+                android:id="@+id/tvCurrentDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12/03/2026"
+                android:text="Hôm nay"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
@@ -66,56 +64,31 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
-                android:src="@drawable/ic_calendar"
+                android:src="@android:drawable/ic_menu_today"
                 app:tint="#FFFFFF" />
         </LinearLayout>
 
-        <!-- Chú thích (Legend) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="horizontal"
-            android:weightSum="4">
-
-            <!-- Trống -->
+            android:weightSum="3">
             <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center_vertical">
-                <View android:layout_width="24dp" android:layout_height="24dp" android:background="@drawable/bg_box_white" />
+                <View android:layout_width="20dp" android:layout_height="20dp" android:background="#FFFFFF" />
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Trống" android:textColor="#FFFFFF" android:textSize="12sp" />
             </LinearLayout>
-
-            <!-- Đã đặt -->
             <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center_vertical">
-                <View android:layout_width="24dp" android:layout_height="24dp" android:background="@drawable/bg_box_red" />
+                <View android:layout_width="20dp" android:layout_height="20dp" android:background="#F4B33E" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Đang chọn" android:textColor="#FFFFFF" android:textSize="12sp" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center_vertical">
+                <View android:layout_width="20dp" android:layout_height="20dp" android:background="#C62828" />
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Đã đặt" android:textColor="#FFFFFF" android:textSize="12sp" />
             </LinearLayout>
-
-            <!-- Khoá -->
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center_vertical">
-                <View android:layout_width="24dp" android:layout_height="24dp" android:background="@drawable/bg_box_gray" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Khoá" android:textColor="#FFFFFF" android:textSize="12sp" />
-            </LinearLayout>
-
-            <!-- Sự kiện -->
-            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center_vertical">
-                <TextView android:layout_width="24dp" android:layout_height="24dp" android:background="@drawable/bg_box_purple" android:gravity="center" android:text="!" android:textColor="#000000" android:textStyle="bold" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Sự kiện" android:textColor="#FFFFFF" android:textSize="12sp" />
-            </LinearLayout>
         </LinearLayout>
-
-        <!-- Link Xem sân -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Xem sân &amp; bảng giá"
-            android:textColor="#F4B33E"
-            android:textSize="14sp"
-            android:textStyle="bold" /> <!-- 8 là cờ cho underline text -->
-
     </LinearLayout>
 
-    <!-- Dòng Lưu ý -->
     <LinearLayout
         android:id="@+id/layoutNotice"
         android:layout_width="match_parent"
@@ -130,19 +103,15 @@
             android:layout_height="wrap_content"
             android:text="Lưu ý: "
             android:textColor="#D32F2F"
-            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nếu bạn cần đặt lịch cố định vui lòng liên hệ: 0856.860.456 để được hỗ trợ."
-            android:textColor="#333333"
-            android:textSize="14sp" />
+            android:text="Bấm vào các ô màu trắng để chọn khung giờ."
+            android:textColor="#333333" />
     </LinearLayout>
 
-    <!-- BẢNG GRID THỜI GIAN (Scroll được 2 chiều) -->
-    <!-- Trong code này mình mockup 1 cột trái cố định, bên phải scroll ngang -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -154,31 +123,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <!-- CỘT TRÁI CỐ ĐỊNH (Tên Sân) -->
             <LinearLayout
+                android:id="@+id/layoutCourtNames"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="#DDF2E6">
-
-                <!-- Ô góc trên cùng bên trái (để trống hoặc ghi chữ Sân) -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:background="#CCF3F6"/>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#BDBDBD"/>
-
-                <!-- Danh sách sân -->
-                <TextView android:layout_width="match_parent" android:layout_height="50dp" android:gravity="center" android:text="C.Lông 1" android:textColor="#000000"/>
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#BDBDBD"/>
-                <TextView android:layout_width="match_parent" android:layout_height="50dp" android:gravity="center" android:text="C.Lông 2" android:textColor="#000000"/>
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#BDBDBD"/>
-                <TextView android:layout_width="match_parent" android:layout_height="50dp" android:gravity="center" android:text="C.Lông 3" android:textColor="#000000"/>
-                <!-- Thêm các sân khác tương tự -->
             </LinearLayout>
 
-            <!-- PHẦN THỜI GIAN CUỘN NGANG ĐƯỢC -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -189,78 +141,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!-- Hàng Tiêu đề Giờ -->
                     <LinearLayout
+                        android:id="@+id/layoutTimeHeaders"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="#CCF3F6"
                         android:orientation="horizontal">
-                        <!-- Giả sử mỗi block 30 phút rộng 60dp -->
-                        <TextView android:layout_width="60dp" android:layout_height="match_parent" android:gravity="center" android:text="5:30" android:textSize="10sp" />
-                        <TextView android:layout_width="60dp" android:layout_height="match_parent" android:gravity="center" android:text="6:00" android:textSize="10sp" />
-                        <TextView android:layout_width="60dp" android:layout_height="match_parent" android:gravity="center" android:text="6:30" android:textSize="10sp" />
-                        <TextView android:layout_width="60dp" android:layout_height="match_parent" android:gravity="center" android:text="7:00" android:textSize="10sp" />
-                        <TextView android:layout_width="60dp" android:layout_height="match_parent" android:gravity="center" android:text="7:30" android:textSize="10sp" />
-                        <TextView android:layout_width="60dp" android:layout_height="match_parent" android:gravity="center" android:text="8:00" android:textSize="10sp" />
-                        <!-- Thêm tiếp các giờ -->
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#BDBDBD"/>
 
-                    <!-- Hàng C.Lông 1 -->
-                    <LinearLayout android:layout_width="wrap_content" android:layout_height="50dp" android:orientation="horizontal">
-                        <!-- Cục đỏ (chiếm 3 block = 1h30p = 180dp) -->
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:background="#C62828"
-                            android:gravity="center"
-                            android:text="Mừng Xuân"
-                            android:textColor="#F4B33E"
-                            android:textStyle="italic"
-                            tools:ignore="TextContrastCheck" />
-                        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#BDBDBD"/>
-                        <!-- Cục xám (chiếm 3 block = 180dp) -->
-                        <View android:layout_width="180dp" android:layout_height="match_parent" android:background="#9E9E9E"/>
-                        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#BDBDBD"/>
-                    </LinearLayout>
-
-                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#BDBDBD"/>
-
-                    <!-- Hàng C.Lông 2 -->
-                    <LinearLayout android:layout_width="wrap_content" android:layout_height="50dp" android:orientation="horizontal">
-                        <!-- Mockup tương tự như trên -->
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:background="#C62828"
-                            android:gravity="center"
-                            android:text="Mừng Xuân"
-                            android:textColor="#F4B33E"
-                            android:textStyle="italic"
-                            tools:ignore="TextContrastCheck" />
-                        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#BDBDBD"/>
-                        <View android:layout_width="240dp" android:layout_height="match_parent" android:background="#9E9E9E"/>
-                    </LinearLayout>
-
-                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#BDBDBD"/>
-
-                    <!-- Hàng C.Lông 3 -->
-                    <LinearLayout android:layout_width="wrap_content" android:layout_height="50dp" android:orientation="horizontal">
-                        <!-- Mockup ô trắng -->
-                        <TextView
-                            android:layout_width="120dp"
-                            android:layout_height="match_parent"
-                            android:background="#C62828"
-                            android:gravity="center"
-                            android:text="Mừng Xuân"
-                            android:textColor="#F4B33E"
-                            android:textStyle="italic"
-                            tools:ignore="TextContrastCheck" />
-                        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#BDBDBD"/>
-                        <View android:layout_width="120dp" android:layout_height="match_parent" android:background="#FFFFFF"/> <!-- Trống -->
-                        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#BDBDBD"/>
-                        <TextView android:layout_width="120dp" android:layout_height="match_parent" android:background="#C62828" android:gravity="center" android:text="Mừng Xuân" android:textColor="#F4B33E" android:textStyle="italic" tools:ignore="TextContrastCheck"/>
+                    <LinearLayout
+                        android:id="@+id/layoutGridRows"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                     </LinearLayout>
 
                 </LinearLayout>
@@ -268,25 +163,32 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- PHẦN DƯỚI CÙNG CỐ ĐỊNH (Slider & Nút Tiếp Theo) -->
     <LinearLayout
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:background="#FFFFFF"
+        android:elevation="16dp"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <TextView
+            android:id="@+id/tvSelectedInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chưa chọn giờ nào"
+            android:textColor="#C62828"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
 
-        <!-- Nút Tiếp Theo -->
         <TextView
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/bg_btn_yellow"
+            android:background="#F4B33E"
             android:gravity="center"
-            android:text="TIẾP THEO"
+            android:text="XÁC NHẬN ĐẶT LỊCH"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />

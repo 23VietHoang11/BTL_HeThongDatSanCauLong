@@ -7,7 +7,6 @@
     android:background="@drawable/khung_vien_bo_goc"
     android:paddingBottom="24dp">
 
-    <!-- Nút Tắt (Close) -->
     <ImageView
         android:id="@+id/btnClose"
         android:layout_width="32dp"
@@ -21,7 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="#015331"/>
 
-    <!-- Tiêu đề -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
@@ -35,7 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Card 1: Đặt lịch ngày trực quan (Màu Xanh) -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardVisualBooking"
         android:layout_width="match_parent"
@@ -74,7 +71,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvVisualTitle" />
 
-        <!-- Nút mũi tên góc dưới phải -->
         <ImageView
             android:id="@+id/btnArrowGreen"
             android:layout_width="60dp"
@@ -87,7 +83,6 @@
             app:tint="#FFFFFF" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Card 2: Đặt lịch sự kiện (Màu Hồng) -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardEventBooking"
         android:layout_width="match_parent"
@@ -126,18 +121,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvEventTitle" />
 
-        <!-- Badge "New" -->
         <ImageView
             android:id="@+id/ivBadgeNew"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:src="@drawable/ic_badge_new"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Nút mũi tên góc dưới phải -->
+        <TextView
+            android:id="@+id/tvBadgeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COMING\nSOON"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="8sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBadgeNew"
+            app:layout_constraintEnd_toEndOf="@+id/ivBadgeNew"
+            app:layout_constraintStart_toStartOf="@+id/ivBadgeNew"
+            app:layout_constraintTop_toTopOf="@+id/ivBadgeNew" />
+
         <ImageView
             android:id="@+id/btnArrowPink"
             android:layout_width="60dp"
