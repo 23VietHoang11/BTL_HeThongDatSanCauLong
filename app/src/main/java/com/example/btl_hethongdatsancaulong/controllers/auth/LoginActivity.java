@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.btl_hethongdatsancaulong.R;
 import com.example.btl_hethongdatsancaulong.controllers.admin.AdminDashboardActivity;
 import com.example.btl_hethongdatsancaulong.controllers.customer.MainHomeActivity;
 import com.example.btl_hethongdatsancaulong.databinding.ActivityLoginBinding;
@@ -15,6 +16,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.Theme_BTL_HeThongDatSanCauLong);
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
