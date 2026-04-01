@@ -32,10 +32,11 @@
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@android:drawable/sym_def_app_icon"
-            app:tint="#4CAF50" />
+            android:src="@drawable/anh"
+             />
 
         <EditText
+            android:id="@+id/edtSearchMap"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="12dp"
@@ -61,83 +62,7 @@
         android:clipToPadding="false"
         android:paddingHorizontal="16dp"
         android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/layoutSearchBar">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/bg_search_bar"
-                android:elevation="4dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="12dp">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_dialog_map"
-                    app:tint="#D32F2F" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:text="Sân phức hợp"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/bg_search_bar"
-                android:elevation="4dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="12dp">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_menu_mylocation"
-                    app:tint="#4CAF50" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:text="Sân golf"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/bg_search_bar"
-                android:elevation="4dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="12dp">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_menu_mylocation"
-                    app:tint="#2196F3" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:text="Sân padel"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </LinearLayout>
-    </HorizontalScrollView>
+        app:layout_constraintTop_toBottomOf="@id/layoutSearchBar"/>
 
     <ImageView
         android:id="@+id/btnMapLayer"
@@ -160,31 +85,7 @@
         android:layout_marginBottom="16dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/layoutBottomNav"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:id="@+id/btnListUp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/bg_circle_green_border"
-            android:backgroundTint="#0B6A41"
-            android:elevation="4dp"
-            android:padding="12dp"
-            android:src="@android:drawable/arrow_up_float"
-            app:tint="#FFFFFF" />
-
-        <ImageView
-            android:id="@+id/btnMyLocation"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_circle_green_border"
-            android:backgroundTint="#0B6A41"
-            android:elevation="4dp"
-            android:padding="12dp"
-            android:src="@android:drawable/ic_menu_mylocation"
-            app:tint="#FFFFFF" />
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <LinearLayout
         android:id="@+id/layoutBottomNav"

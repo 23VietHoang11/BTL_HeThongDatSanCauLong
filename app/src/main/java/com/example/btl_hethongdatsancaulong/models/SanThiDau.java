@@ -4,15 +4,20 @@ public class SanThiDau {
     private String tenSan;
     private String diaChi;
     private String thoiGian;
-    // Tạm dùng String hoặc int để lưu ID ảnh (sau này lấy từ API tính sau)
+    // Dùng int để lưu ID ảnh từ thư mục drawable/mipmap
+    private int hinhAnh;
 
-    public SanThiDau(String tenSan, String diaChi, String thoiGian) {
+    // Cập nhật Constructor để nhận thêm hinhAnh
+    public SanThiDau(String tenSan, String diaChi, String thoiGian, int hinhAnh) {
         this.tenSan = tenSan;
         this.diaChi = diaChi;
         this.thoiGian = thoiGian;
+        this.hinhAnh = hinhAnh;
     }
 
     public String getTenSan() { return tenSan; }
     public String getDiaChi() { return diaChi; }
     public String getThoiGian() { return thoiGian; }
+    // Thêm Getter để lấy ảnh ra dùng bên Adapter
+    public int getHinhAnh() { return hinhAnh; }
 }

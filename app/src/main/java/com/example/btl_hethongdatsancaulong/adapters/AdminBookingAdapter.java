@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.btl_hethongdatsancaulong.databinding.ItemAdminBookingCardBinding;
 import com.example.btl_hethongdatsancaulong.models.AdminBooking;
+import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class AdminBookingAdapter extends RecyclerView.Adapter<AdminBookingAdapter.AdminViewHolder> {
@@ -31,7 +32,6 @@ public class AdminBookingAdapter extends RecyclerView.Adapter<AdminBookingAdapte
     public void onBindViewHolder(@NonNull AdminViewHolder holder, int position) {
         AdminBooking donHang = listBooking.get(position);
 
-        // Đổ dữ liệu thật lên giao diện
         holder.binding.tvCustomerName.setText("Khách: " + donHang.getTenKhachHang());
         holder.binding.tvCustomerPhone.setText("SĐT: " + donHang.getSoDienThoai());
         holder.binding.tvAdminCourtName.setText(donHang.getTenSan());
@@ -39,33 +39,32 @@ public class AdminBookingAdapter extends RecyclerView.Adapter<AdminBookingAdapte
         holder.binding.tvAdminBookingPrice.setText(donHang.getTongTien());
         holder.binding.tvAdminBookingStatus.setText(donHang.getTrangThai());
 
-        // Đổi màu sắc và Ẩn/Hiện nút bấm theo Trạng thái
         if (donHang.getTrangThai().equals("Chờ duyệt")) {
-            holder.binding.tvAdminBookingStatus.setTextColor(Color.parseColor("#E65100")); // Cam
+            holder.binding.tvAdminBookingStatus.setTextColor(Color.parseColor("#E65100"));
             holder.binding.tvAdminBookingStatus.setBackgroundColor(Color.parseColor("#FFF3E0"));
-            holder.binding.layoutActionButtons.setVisibility(View.VISIBLE); // Hiện 2 nút duyệt
+            holder.binding.layoutActionButtons.setVisibility(View.VISIBLE);
         } else if (donHang.getTrangThai().equals("Đã xác nhận")) {
-            holder.binding.tvAdminBookingStatus.setTextColor(Color.parseColor("#2E7D32")); // Xanh
+            holder.binding.tvAdminBookingStatus.setTextColor(Color.parseColor("#2E7D32"));
             holder.binding.tvAdminBookingStatus.setBackgroundColor(Color.parseColor("#E8F5E9"));
-            holder.binding.layoutActionButtons.setVisibility(View.GONE); // Ẩn nút đi vì đã duyệt rồi
+            holder.binding.layoutActionButtons.setVisibility(View.GONE);
         } else {
-            holder.binding.tvAdminBookingStatus.setTextColor(Color.parseColor("#D32F2F")); // Đỏ (Từ chối)
+            holder.binding.tvAdminBookingStatus.setTextColor(Color.parseColor("#D32F2F"));
             holder.binding.tvAdminBookingStatus.setBackgroundColor(Color.parseColor("#FFEBEE"));
             holder.binding.layoutActionButtons.setVisibility(View.GONE);
         }
 
-        // --- XỬ LÝ NÚT XÁC NHẬN ---
+        // --- BẮN LÊN FIREBASE KHI BẤM XÁC NHẬN ---
         holder.binding.btnAdminApprove.setOnClickListener(v -> {
-            donHang.setTrangThai("Đã xác nhận");
-            notifyItemChanged(position); // Báo cho danh sách load lại dòng này ngay lập tức
-            Toast.makeText(v.getContext(), "Đã duyệt đơn " + donHang.getMaDon(), Toast.LENGTH_SHORT).show();
+            FirebaseDatabase.getInstance("https://db-btl-cnpm-lttbdd-default-rtdb.asia-southeast1.firebasedatabase.app")
+                    .getReference("Bookings").child(donHang.getMaDon()).child("trangThai").setValue("Đã xác nhận");
+            Toast.makeText(v.getContext(), "Đã duyệt đơn!", Toast.LENGTH_SHORT).show();
         });
 
-        // --- XỬ LÝ NÚT TỪ CHỐI ---
+        // --- BẮN LÊN FIREBASE KHI BẤM TỪ CHỐI ---
         holder.binding.btnAdminReject.setOnClickListener(v -> {
-            donHang.setTrangThai("Đã hủy");
-            notifyItemChanged(position);
-            Toast.makeText(v.getContext(), "Đã từ chối đơn " + donHang.getMaDon(), Toast.LENGTH_SHORT).show();
+            FirebaseDatabase.getInstance("https://db-btl-cnpm-lttbdd-default-rtdb.asia-southeast1.firebasedatabase.app")
+                    .getReference("Bookings").child(donHang.getMaDon()).child("trangThai").setValue("Đã hủy");
+            Toast.makeText(v.getContext(), "Đã hủy đơn!", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -76,7 +75,6 @@ public class AdminBookingAdapter extends RecyclerView.Adapter<AdminBookingAdapte
 
     public static class AdminViewHolder extends RecyclerView.ViewHolder {
         ItemAdminBookingCardBinding binding;
-
         public AdminViewHolder(ItemAdminBookingCardBinding binding) {
             super(binding.getRoot());
             this.binding = binding;

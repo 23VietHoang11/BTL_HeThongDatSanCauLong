@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "670626143888",
+    "firebase_url": "https://db-btl-cnpm-lttbdd-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "db-btl-cnpm-lttbdd",
+    "storage_bucket": "db-btl-cnpm-lttbdd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670626143888:android:f9818897442fbc8b44c215",
+        "android_client_info": {
+          "package_name": "com.example.btl_hethongdatsancaulong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670626143888-2h40te187qr8lpl1ungcamttn5b3qe0d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9l6G2v_ExVctrMgjAy7VuCWwKHRrgSjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670626143888-2h40te187qr8lpl1ungcamttn5b3qe0d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

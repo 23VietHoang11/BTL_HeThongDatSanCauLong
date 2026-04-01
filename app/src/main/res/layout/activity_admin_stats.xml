@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Tháng 03 / 2026"
+                    android:text="Thống kê Tự động (Realtime)"
                     android:textColor="#2E7D32"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -97,7 +97,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="86.466.000"
+                            android:text="0"
                             android:textColor="#1976D2"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -130,7 +130,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="6.640.000"
+                            android:text="0"
                             android:textColor="#F57C00"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -165,7 +165,7 @@
                         android:layout_height="20dp"
                         android:layout_marginTop="16dp"
                         android:max="100"
-                        android:progress="93"
+                        android:progress="0"
                         android:progressTint="#1976D2"
                         android:progressBackgroundTint="#F57C00" />
 
@@ -179,16 +179,101 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="🔵 Thuê Sân (93%)"
+                            android:text="🔵 Thuê Sân"
                             android:textColor="#1976D2"
                             android:textSize="13sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="🟠 Dịch vụ (7%)"
+                            android:text="🟠 Dịch vụ POS"
                             android:textColor="#F57C00"
                             android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thống kê chi tiết Đơn hàng"
+                        android:textColor="#333333"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tổng số đơn:"
+                            android:textColor="#757575" />
+                        <TextView
+                            android:id="@+id/tvTotalOrders"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#333333"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Hoàn thành / Đã thu tiền:"
+                            android:textColor="#757575" />
+                        <TextView
+                            android:id="@+id/tvSuccessOrders"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#2E7D32"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Đơn bị từ chối / Đã hủy:"
+                            android:textColor="#757575" />
+                        <TextView
+                            android:id="@+id/tvCanceledOrders"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#D32F2F"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -205,7 +290,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TỔNG DOANH THU THÁNG"
+                    android:text="TỔNG DOANH THU THỰC TẾ"
                     android:textColor="#2E7D32"
                     android:textStyle="bold" />
 
@@ -214,7 +299,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="93.106.000 đ"
+                    android:text="0 đ"
                     android:textColor="#1B5E20"
                     android:textSize="28sp"
                     android:textStyle="bold" />

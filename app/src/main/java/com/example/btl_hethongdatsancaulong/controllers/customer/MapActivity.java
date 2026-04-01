@@ -2,21 +2,23 @@ package com.example.btl_hethongdatsancaulong.controllers.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-// Nhớ import mấy thư viện của Google Map này nhé
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import com.example.btl_hethongdatsancaulong.R;
 import com.example.btl_hethongdatsancaulong.databinding.ActivityMapBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-// Thêm cái implements OnMapReadyCallback vào đuôi class
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private ActivityMapBinding binding;
@@ -28,67 +30,57 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         binding = ActivityMapBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Khởi động bản đồ ngầm
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
 
-        // Nút Back
         binding.btnMapLayer.setOnClickListener(v -> finish());
-
-        // Xử lý nút Trang chủ ở Bottom Navigation
-        binding.navHome.setOnClickListener(v -> {
-            Intent intent = new Intent(MapActivity.this, MainHomeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
+        binding.navHome.setOnClickListener(v -> finish());
+        binding.navMap.setOnClickListener(v -> {}); // Đang ở Map rồi
+        binding.navExplore.setOnClickListener(v -> Toast.makeText(this, "Hãy đến tận nơi để khám phá nhé!", Toast.LENGTH_SHORT).show());
+        binding.navFeatured.setOnClickListener(v -> {
+            startActivity(new Intent(MapActivity.this, FeaturedActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             finish();
         });
-
-        binding.navMap.setOnClickListener(v -> {
-            Intent intent = new Intent(MapActivity.this, MapActivity.class);
-            // Dùng cờ này để chuyển tab mượt mà, không bị hiệu ứng trượt như mở trang mới
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
-        });
-
-        // 3. Nút Khám phá (Nút giữa) - Tạm thời hiển thị thông báo
-        binding.navExplore.setOnClickListener(v -> {
-            android.widget.Toast.makeText(this, "Tính năng ghép kèo đang phát triển!", android.widget.Toast.LENGTH_SHORT).show();
-        });
-
-        // 4. Nút Nổi bật
-        binding.navFeatured.setOnClickListener(v -> {
-            Intent intent = new Intent(MapActivity.this, FeaturedActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
-        });
-
-        // 5. Nút Tài khoản
         binding.navAccount.setOnClickListener(v -> {
-            Intent intent = new Intent(MapActivity.this, AccountActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
+            startActivity(new Intent(MapActivity.this, AccountActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+            finish();
         });
     }
 
-    // Hàm này tự động chạy khi bản đồ đã load xong
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
-        // 1. Tạo tọa độ (Kinh độ, Vĩ độ) cho 3 sân bóng ở Hà Nội
-        LatLng sanSuPham = new LatLng(21.0365, 105.7818);
-        LatLng sanXuanThuy = new LatLng(21.0375, 105.7828);
-        LatLng sanMyDinh = new LatLng(21.0223, 105.7628);
+        // Đặt góc nhìn mặc định ở trung tâm Hà Nội
+        LatLng trungTamHanoi = new LatLng(21.0285, 105.8048);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(trungTamHanoi, 12f));
 
-        // 2. Cắm cờ (Marker) lên bản đồ
-        mMap.addMarker(new MarkerOptions().position(sanSuPham).title("Sân Cầu Lông ĐHSP"));
-        mMap.addMarker(new MarkerOptions().position(sanXuanThuy).title("Sân Cầu Lông Xuân Thủy"));
-        mMap.addMarker(new MarkerOptions().position(sanMyDinh).title("Sân Cầu Lông Mỹ Đình"));
+        // TỰ ĐỘNG QUÉT FIREBASE VÀ CẮM CỜ CÁC SÂN ĐANG CÓ
+        FirebaseDatabase.getInstance("https://db-btl-cnpm-lttbdd-default-rtdb.asia-southeast1.firebasedatabase.app")
+                .getReference("Courts")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        double latOffset = 0.0; // Biến tấu tọa độ để các cờ không đè lên nhau
+                        double lngOffset = 0.0;
 
-        // 3. Di chuyển Camera (Góc nhìn) về khu vực Cầu Giấy và zoom lên (mức 14f)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sanSuPham, 14f));
+                        for (DataSnapshot data : snapshot.getChildren()) {
+                            String tenSan = data.child("tenSan").getValue(String.class);
+                            if (tenSan != null) {
+                                // Rải ngẫu nhiên tọa độ các sân quanh khu vực trung tâm
+                                LatLng viTriSan = new LatLng(21.0285 + latOffset, 105.8048 + lngOffset);
+                                mMap.addMarker(new MarkerOptions().position(viTriSan).title(tenSan));
+
+                                // Dịch chuyển vị trí cho sân tiếp theo
+                                latOffset += 0.015;
+                                lngOffset += 0.010;
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {}
+                });
     }
 }

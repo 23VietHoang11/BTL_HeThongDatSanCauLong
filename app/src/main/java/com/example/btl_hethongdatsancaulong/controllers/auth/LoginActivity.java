@@ -1,14 +1,21 @@
 package com.example.btl_hethongdatsancaulong.controllers.auth;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.btl_hethongdatsancaulong.R;
 import com.example.btl_hethongdatsancaulong.controllers.admin.AdminDashboardActivity;
 import com.example.btl_hethongdatsancaulong.controllers.customer.MainHomeActivity;
 import com.example.btl_hethongdatsancaulong.databinding.ActivityLoginBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -21,60 +28,83 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Nút Đăng nhập
-        binding.btnLogin.setOnClickListener(v -> {
-            String email = binding.edtPhoneLogin.getText().toString().trim();
+        binding.btnLogin.setOnClickListener(v -> handleLogin());
 
-            if (email.equalsIgnoreCase("111")) {
-                // 1. Luồng của CHỦ SÂN
-                Toast.makeText(this, "Đăng nhập quyền Quản trị viên", Toast.LENGTH_SHORT).show();
-                android.content.Intent intent = new android.content.Intent(LoginActivity.this, com.example.btl_hethongdatsancaulong.controllers.admin.AdminDashboardActivity.class);
-                intent.putExtra("ROLE", "ADMIN"); // Gắn thẻ ADMIN
-                startActivity(intent);
-                finish();
-
-            } else if (email.equalsIgnoreCase("222")) {
-                // 2. Luồng của NHÂN VIÊN
-                Toast.makeText(this, "Đăng nhập ca trực Nhân viên", Toast.LENGTH_SHORT).show();
-                android.content.Intent intent = new android.content.Intent(LoginActivity.this, com.example.btl_hethongdatsancaulong.controllers.admin.AdminDashboardActivity.class);
-                intent.putExtra("ROLE", "STAFF"); // Gắn thẻ STAFF
-                startActivity(intent);
-                finish();
-
-            } else {
-                // 3. Luồng của KHÁCH HÀNG (Dành cho tất cả các số điện thoại hoặc tài khoản khác)
-                Toast.makeText(this, "Xin chào Khách hàng!", Toast.LENGTH_SHORT).show();
-                android.content.Intent intent = new android.content.Intent(LoginActivity.this, com.example.btl_hethongdatsancaulong.controllers.customer.MainHomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        // Nút chuyển sang trang Đăng ký
         binding.tvRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
 
-        // Nút Back (Thoát app hoặc về trang trước)
         binding.btnBack.setOnClickListener(v -> finish());
     }
 
     private void handleLogin() {
-        // Lấy dữ liệu (Chưa cần check pass vội, cứ điền là cho qua để test luồng)
-        String phone = binding.edtPhoneLogin.getText() != null ? binding.edtPhoneLogin.getText().toString().trim() : "";
-        String password = binding.edtPasswordLogin.getText() != null ? binding.edtPasswordLogin.getText().toString().trim() : "";
+        String phone = binding.edtPhoneLogin.getText().toString().trim();
+        String password = binding.edtPasswordLogin.getText().toString().trim();
 
         if (phone.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Vui lòng nhập số điện thoại và mật khẩu", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+        // Quyền Admin/Staff test nhanh bằng mã (Giữ nguyên để đi thi test cho lẹ)
+        if (phone.equals("111") || phone.equals("222")) {
+            Intent intent = new Intent(this, AdminDashboardActivity.class);
+            intent.putExtra("ROLE", phone.equals("111") ? "ADMIN" : "STAFF");
+            startActivity(intent);
+            finish();
+            return;
+        }
 
-        // CHUYỂN VÀO TRANG CHỦ
-        Intent intent = new Intent(LoginActivity.this, MainHomeActivity.class);
-        startActivity(intent);
-        finish(); // Đóng trang Đăng nhập lại để người dùng ấn Back không bị quay lại đây
+        DatabaseReference rootRef = FirebaseDatabase.getInstance("https://db-btl-cnpm-lttbdd-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
+
+        // BƯỚC 1: TÌM TRONG NHÁNH KHÁCH HÀNG (USERS) TRƯỚC
+        rootRef.child("Users").child(phone).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // => TÀI KHOẢN LÀ KHÁCH HÀNG
+                    String dbPass = snapshot.child("matKhau").getValue(String.class);
+                    if (dbPass != null && dbPass.equals(password)) {
+                        // Lưu thông tin vào SharedPreferences
+                        SharedPreferences.Editor editor = getSharedPreferences("UserPrefs", MODE_PRIVATE).edit();
+                        editor.putString("PHONE", phone);
+                        editor.putString("NAME", snapshot.child("hoTen").getValue(String.class));
+                        editor.apply();
+
+                        startActivity(new Intent(LoginActivity.this, MainHomeActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Sai mật khẩu khách hàng!", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // BƯỚC 2: NẾU KHÔNG CÓ TRONG USERS -> TÌM TRONG NHÁNH NHÂN VIÊN (STAFFS)
+                    rootRef.child("Staffs").orderByChild("soDienThoai").equalTo(phone).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot staffSnap) {
+                            if (staffSnap.exists()) {
+                                // => TÀI KHOẢN LÀ NHÂN VIÊN
+                                // Mật khẩu mặc định cấp cho mọi nhân viên mới tạo là "123"
+                                if (password.equals("123")) {
+                                    Toast.makeText(LoginActivity.this, "Đăng nhập ca trực Nhân viên!", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
+                                    intent.putExtra("ROLE", "STAFF"); // Gắn thẻ quyền STAFF để giấu bớt chức năng Admin
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Sai mật khẩu! (Mặc định của nhân viên là 123456)", Toast.LENGTH_LONG).show();
+                                }
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Tài khoản không tồn tại trên hệ thống!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) { }
+                    });
+                }
+            }
+            @Override public void onCancelled(@NonNull DatabaseError error) {}
+        });
     }
 }
