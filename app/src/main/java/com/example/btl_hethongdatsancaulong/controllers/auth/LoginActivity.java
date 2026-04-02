@@ -41,15 +41,30 @@ public class LoginActivity extends AppCompatActivity {
         String phone = binding.edtPhoneLogin.getText().toString().trim();
         String password = binding.edtPasswordLogin.getText().toString().trim();
 
-        if (phone.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+        // VALIDATE: Bắt lỗi rỗng
+        if (phone.isEmpty()) {
+            binding.edtPhoneLogin.setError("Vui lòng nhập số điện thoại");
+            binding.edtPhoneLogin.requestFocus();
+            return;
+        }
+
+        // VALIDATE: Số điện thoại ít nhất 8 số
+        if (phone.length() < 8) {
+            binding.edtPhoneLogin.setError("Số điện thoại phải có ít nhất 8 chữ số!");
+            binding.edtPhoneLogin.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            binding.edtPasswordLogin.setError("Vui lòng nhập mật khẩu");
+            binding.edtPasswordLogin.requestFocus();
             return;
         }
 
         // Quyền Admin/Staff test nhanh bằng mã (Giữ nguyên để đi thi test cho lẹ)
-        if (phone.equals("111") || phone.equals("222")) {
+        if (phone.equals("11111111") || phone.equals("22222222")) {
             Intent intent = new Intent(this, AdminDashboardActivity.class);
-            intent.putExtra("ROLE", phone.equals("111") ? "ADMIN" : "STAFF");
+            intent.putExtra("ROLE", phone.equals("11111111") ? "ADMIN" : "STAFF");
             startActivity(intent);
             finish();
             return;
@@ -83,12 +98,11 @@ public class LoginActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot staffSnap) {
                             if (staffSnap.exists()) {
                                 // => TÀI KHOẢN LÀ NHÂN VIÊN
-                                // Mật khẩu mặc định cấp cho mọi nhân viên mới tạo là "123"
                                 if (password.equals("123")) {
                                     Toast.makeText(LoginActivity.this, "Đăng nhập ca trực Nhân viên!", Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
-                                    intent.putExtra("ROLE", "STAFF"); // Gắn thẻ quyền STAFF để giấu bớt chức năng Admin
+                                    intent.putExtra("ROLE", "STAFF");
                                     startActivity(intent);
                                     finish();
                                 } else {
