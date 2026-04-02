@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bumptech.glide.Glide; // THÊM IMPORT GLIDE
 import com.example.btl_hethongdatsancaulong.R;
 import com.example.btl_hethongdatsancaulong.adapters.VenueAdapter;
 import com.example.btl_hethongdatsancaulong.databinding.ActivityMainHomeBinding;
@@ -43,7 +44,17 @@ public class MainHomeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // ==========================================
-        // 1. CẬP NHẬT HEADER (TÊN & NGÀY THÁNG)
+        // 1. LÀM TRÒN ẢNH LOGO APP BẰNG GLIDE
+        // ==========================================
+        if (binding.ivAppLogo != null) {
+            Glide.with(this)
+                    .load(R.drawable.anh) // Tên file ảnh của bạn
+                    .circleCrop()         // Hiệu ứng cắt tròn
+                    .into(binding.ivAppLogo);
+        }
+
+        // ==========================================
+        // 2. CẬP NHẬT HEADER (TÊN & NGÀY THÁNG)
         // ==========================================
         try {
             // Lấy tên từ bộ nhớ tạm
@@ -64,7 +75,7 @@ public class MainHomeActivity extends AppCompatActivity {
         } catch (Exception ignored) {}
 
         // ==========================================
-        // 2. KHỞI TẠO RECYCLERVIEW
+        // 3. KHỞI TẠO RECYCLERVIEW
         // ==========================================
         danhSachGoc = new ArrayList<>();
         danhSachHienThi = new ArrayList<>();
@@ -84,7 +95,7 @@ public class MainHomeActivity extends AppCompatActivity {
         loadCourtsFromFirebase();
 
         // ==========================================
-        // 3. TÍNH NĂNG TÌM KIẾM THEO TÊN (REALTIME)
+        // 4. TÍNH NĂNG TÌM KIẾM THEO TÊN (REALTIME)
         // ==========================================
         if (binding.edtSearch != null) {
             binding.edtSearch.addTextChangedListener(new TextWatcher() {
@@ -102,22 +113,12 @@ public class MainHomeActivity extends AppCompatActivity {
         }
 
         // ==========================================
-        // 4. XỬ LÝ BOTTOM NAVIGATION
+        // 5. XỬ LÝ BOTTOM NAVIGATION
         // ==========================================
         binding.navMap.setOnClickListener(v -> {
             startActivity(new Intent(MainHomeActivity.this, MapActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
         });
 
-        binding.navExplore.setOnClickListener(v -> {
-            String[] vouchers = {"GIAM50K", "FREE_NUOC", "GIAM20%", "KHACH_MOI", "CHAO_HE"};
-            String randomVoucher = vouchers[new java.util.Random().nextInt(vouchers.length)];
-
-            new androidx.appcompat.app.AlertDialog.Builder(MainHomeActivity.this)
-                    .setTitle("🎁 Voucher Khám Phá")
-                    .setMessage("Bạn nhận được mã giảm giá bí mật:\n\n" + randomVoucher + "\n\nHãy đưa mã này cho nhân viên thu ngân để nhận ưu đãi nhé!")
-                    .setPositiveButton("Tuyệt vời", (dialog, which) -> dialog.dismiss())
-                    .show();
-        });
 
         binding.navFeatured.setOnClickListener(v -> {
             startActivity(new Intent(MainHomeActivity.this, FeaturedActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
@@ -154,7 +155,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     if (thoiGian == null || thoiGian.isEmpty()) thoiGian = "06:00 - 22:00";
 
                     // --- MẸO GẮN ẢNH ĐỘNG MÀ KHÔNG CẦN DATABASE ---
-                    // 1. Tạo 1 danh sách các ảnh. Tạm thời mình lấy các ảnh feat1, feat2 bạn đang có sẵn.
+                    // 1. Tạo 1 danh sách các ảnh. Tạm thời mình lấy các ảnh san1, san2, san3 bạn đang có sẵn.
                     int[] danhSachAnh = {
                             R.drawable.san1,
                             R.drawable.san2,

@@ -2,6 +2,7 @@ package com.example.btl_hethongdatsancaulong.controllers.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns; // Thêm thư viện này để check định dạng Email
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,40 +15,80 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    // Khai báo biến binding để kết nối với activity_register.xml
     private ActivityRegisterBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Khởi tạo ViewBinding
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Xử lý nút Đăng Ký
         binding.btnRegister.setOnClickListener(v -> handleRegister());
 
-        // Xử lý nút quay lại hoặc nút "Đăng nhập" ở dưới cùng
         binding.tvLogin.setOnClickListener(v -> {
-            // Chuyển sang màn hình Đăng nhập
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(intent);
-            finish(); // Đóng màn hình đăng ký
+            finish();
         });
 
         binding.btnBack.setOnClickListener(v -> finish());
     }
 
-    // Sửa lại hàm handleRegister() trong file RegisterActivity.java:
     private void handleRegister() {
+        String fullName = binding.edtFullName.getText().toString().trim();
         String phone = binding.edtPhone.getText().toString().trim();
         String email = binding.edtEmail.getText().toString().trim();
-        String fullName = binding.edtFullName.getText().toString().trim();
         String password = binding.edtPassword.getText().toString().trim();
         String confirmPassword = binding.edtConfirmPassword.getText().toString().trim();
 
-        if (phone.isEmpty() || fullName.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Vui lòng nhập đủ thông tin!", Toast.LENGTH_SHORT).show();
+        // VALIDATE: Họ tên
+        if (fullName.isEmpty()) {
+            binding.edtFullName.setError("Vui lòng nhập họ tên!");
+            binding.edtFullName.requestFocus();
+            return;
+        }
+
+        // VALIDATE: Số điện thoại
+        if (phone.isEmpty()) {
+            binding.edtPhone.setError("Vui lòng nhập số điện thoại!");
+            binding.edtPhone.requestFocus();
+            return;
+        }
+        if (phone.length() < 8) {
+            binding.edtPhone.setError("Số điện thoại phải có ít nhất 8 chữ số!");
+            binding.edtPhone.requestFocus();
+            return;
+        }
+
+        // VALIDATE: Email
+        if (email.isEmpty()) {
+            binding.edtEmail.setError("Vui lòng nhập địa chỉ email!");
+            binding.edtEmail.requestFocus();
+            return;
+        }
+        // Công cụ của Android giúp tự động nhận diện định dạng abc@xyz.com
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.edtEmail.setError("Định dạng email không hợp lệ (VD: abc@gmail.com)!");
+            binding.edtEmail.requestFocus();
+            return;
+        }
+
+        // VALIDATE: Mật khẩu
+        if (password.isEmpty()) {
+            binding.edtPassword.setError("Vui lòng nhập mật khẩu!");
+            binding.edtPassword.requestFocus();
+            return;
+        }
+
+        if (confirmPassword.isEmpty()) {
+            binding.edtConfirmPassword.setError("Vui lòng xác nhận mật khẩu!");
+            binding.edtConfirmPassword.requestFocus();
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            binding.edtConfirmPassword.setError("Mật khẩu xác nhận không trùng khớp!");
+            binding.edtConfirmPassword.requestFocus();
             return;
         }
 
